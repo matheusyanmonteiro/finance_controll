@@ -8,6 +8,16 @@ class CategoriesRepository implements ICategoriesRepository {
   constructor() {
     this.repository = getRepository(Category);
   }
+  
+  async findById(id: string): Promise<Category> {
+    const category = await this.repository.findOne({ id });
+    return category;
+  }
+
+  async findByName(name: string): Promise<Category> {
+    const category = await this.repository.findOne({ name });
+    return category;
+  }
 
   async list(): Promise<Category[]> {
     const categories = await this.repository.find();

@@ -1,6 +1,6 @@
 import { getRepository, Repository } from "typeorm";
-import { Category } from "../entities/category";
 import { Spend } from "../entities/spend";
+
 import { ICreateSpendsDTO, IDeleteSpendDTO, ISpendsRepository } from "./interfaces/ISpendsRepository";
 
 class SpendsRepository implements ISpendsRepository {
@@ -14,6 +14,7 @@ class SpendsRepository implements ISpendsRepository {
     const spends = await this.respository.find();
     return spends;
   }
+
   async createSpend({ name, description, cost, id_category }: ICreateSpendsDTO): Promise<void> {
     
     const spend = this.respository.create({
