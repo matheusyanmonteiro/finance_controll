@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { CreateSpendsService } from "../services/SpendsServices/CreateSpendsService";
+import { ListSpendsService } from "../services/SpendsServices/ListSpendsService";
 
 
 class SpendsController {
@@ -15,8 +16,11 @@ class SpendsController {
 
   async handleList(request : Request, response : Response) : Promise<Response> 
   {
-    throw new Error("not implements");
+    const listSpendsService = container.resolve(ListSpendsService)
+    const all = await listSpendsService.execute();
+    return response.json(all);
   }
 }
+
 
 export { SpendsController }

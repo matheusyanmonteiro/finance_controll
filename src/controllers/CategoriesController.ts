@@ -17,8 +17,8 @@ class CategoriesController {
 
   async handleList(request : Request, response : Response) : Promise<Response> 
   {
-    const listCategoriesUseCase = container.resolve(ListCategoriesService)
-    const all = await listCategoriesUseCase.execute();
+    const listCategoriesService = container.resolve(ListCategoriesService)
+    const all = await listCategoriesService.execute();
     return response.json(all);
   }
 }

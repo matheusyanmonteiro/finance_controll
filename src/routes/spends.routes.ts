@@ -7,6 +7,7 @@ const spendsController = new SpendsController();
 
 
 spendsRoutes.post("/", spendsController.handleCreate);
+spendsRoutes.get("/", spendsController.handleList);
 
 
 export { spendsRoutes }
