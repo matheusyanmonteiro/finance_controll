@@ -25,7 +25,11 @@ class Spend {
   @CreateDateColumn()
   updated_at: Date;
 
-  @OneToOne(() => Category)
+  @Column()
+  id_category: string;
+
+  @OneToOne(() => Category, category => category.spendInfo, {onDelete: 'CASCADE'})
+  @JoinColumn({name : "id_category"})
   category: Category;
 
   constructor() {

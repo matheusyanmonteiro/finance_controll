@@ -1,5 +1,6 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToOne, PrimaryColumn } from "typeorm";
+import { Spend } from "./spend";
 
 @Entity("categories")
 class Category {
@@ -11,6 +12,9 @@ class Category {
   description: string;
   @CreateDateColumn()
   created_at: Date;
+
+  @OneToOne(() => Spend, spendInfo => spendInfo.category)
+  spendInfo: Spend;
 
   constructor() {
     if (!this.id) {
