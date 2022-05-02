@@ -1,4 +1,4 @@
-import { inject, injectable } from 'tsyringe';
+import { inject, injectable } from "tsyringe";
 import { AppError } from '../../errors/AppError';
 import { ICategoriesRepository } from '../../repositories/interfaces/ICategoriesRepository';
 import { ISpendsRepository } from '../../repositories/interfaces/ISpendsRepository';

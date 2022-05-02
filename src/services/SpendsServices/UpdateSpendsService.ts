@@ -1,19 +1,16 @@
 import { inject, injectable } from "tsyringe";
-import { Spend } from '../../entities/spend';
 import { ISpendsRepository } from '../../repositories/interfaces/ISpendsRepository';
 
 @injectable()
-class ListSpendsService {
+class UpdateSpendsService {
   constructor(
     @inject("SpendsRepository")
     private spendsRepository: ISpendsRepository
   ) {}
 
-  async execute(): Promise<Spend[]> {
-    const spends = await this.spendsRepository.listSpends();
-    return spends;
+  async execute({id, name, description, cost, id_category}): Promise<void> {
+    this.spendsRepository.updateSpend({id, name, description, cost, id_category});
   }
 }
 
-
-export { ListSpendsService }
+export { UpdateSpendsService }
