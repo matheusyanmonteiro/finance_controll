@@ -22,31 +22,35 @@ class SpendsRepository implements ISpendsRepository {
   }
 
   async createSpend({ name, description, cost, id_category }: ICreateSpendsDTO): Promise<void> {
-    
-    const spend = this.respository.create({
-      name,
-      description,
-      cost,
-      id_category,
-    })
+    try{
+      const spend = this.respository.create({
+        name,
+        description,
+        cost,
+        id_category,
+      })
 
-    await this.respository.save(spend);
-  }
-  async updateSpend({ id, name, description, cost, id_category }: ICreateSpendsDTO): Promise<void> {
-    const spend = this.respository.findOne(id);
+      await this.respository.save(spend);
 
-    if (!spend) {
-      throw new AppError("This Spends does not exists");
+    } catch {
+      throw new AppError("this category does not created.");
     }
+  }
 
-   (await spend).name = name ? name : (await spend).name;
-   (await spend).description = description ? description : (await spend).description;
-   (await spend).cost = cost ? cost : (await spend).cost;
-   (await spend).id_category = id_category ? id_category: (await spend).id_category;
+  async updateSpend({ id, name, description, cost, id_category }: ICreateSpendsDTO): Promise<void> {
+    try{
+      await this.respository.update({
+        id,
+      }, {
+        name: name,
+        description: description,
+        cost: cost,
+        id_category: id_category,
+      });
 
-   (await spend).updated_at = new Date();
-
-  
+    } catch {
+      throw new AppError("This spends does not update"); 
+    }  
   }
 
   async deleteSpend({ id }: IDeleteSpendDTO): Promise<void> {
