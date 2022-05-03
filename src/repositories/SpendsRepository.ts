@@ -21,13 +21,14 @@ class SpendsRepository implements ISpendsRepository {
     return spends;
   }
 
-  async createSpend({ name, description, cost, id_category }: ICreateSpendsDTO): Promise<void> {
+  async createSpend({ name, description, cost, id_category, id_profit }: ICreateSpendsDTO): Promise<void> {
     try{
       const spend = this.repository.create({
         name,
         description,
         cost,
         id_category,
+        id_profit
       })
 
       await this.repository.save(spend);
@@ -37,7 +38,7 @@ class SpendsRepository implements ISpendsRepository {
     }
   }
 
-  async updateSpend({ id, name, description, cost, id_category }: ICreateSpendsDTO): Promise<void> {
+  async updateSpend({ id, name, description, cost, id_category, id_profit }: ICreateSpendsDTO): Promise<void> {
     try{
       await this.repository.update({
         id,
@@ -46,6 +47,7 @@ class SpendsRepository implements ISpendsRepository {
         description: description,
         cost: cost,
         id_category: id_category,
+        id_profit: id_profit,
         updated_at: new Date(),
       });
 

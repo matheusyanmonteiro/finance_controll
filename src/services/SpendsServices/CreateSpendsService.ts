@@ -8,6 +8,8 @@ interface IRequest {
   description: string;
   cost: number;
   id_category: string;
+  id_profit?: string;
+
 }
 
 @injectable()
@@ -19,11 +21,11 @@ class CreateSpendsService {
     private categoryRepository: ICategoriesRepository
   ) {}
 
-  async execute({name, description, cost, id_category}: IRequest): Promise<void> {
+  async execute({name, description, cost, id_category, id_profit}: IRequest): Promise<void> {
     if(! await this.categoryRepository.findById(id_category)) {
       throw new AppError("Category does not exists!");
     }
-    this.spendsRepository.createSpend({name, description, cost, id_category});
+    this.spendsRepository.createSpend({name, description, cost, id_category, id_profit});
   }
 }
 

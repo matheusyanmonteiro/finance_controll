@@ -22,7 +22,7 @@ class Profit {
   @CreateDateColumn()
   updated_at: Date;
 
-  @OneToMany(() => Spend, spend => spend.profit)
+  @OneToMany(() => Spend, spendinfo => spendinfo.profit)
   spends: Spend[];
 
   constructor() {

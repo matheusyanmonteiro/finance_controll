@@ -34,6 +34,9 @@ class Spend {
   @JoinColumn({name : "id_category"})
   category: Category;
 
+  @Column()
+  id_profit: string;
+
   @ManyToOne(() => Profit, profit => profit.spends, {onDelete: 'SET NULL'})
   @JoinColumn({name : "id_profit"})
   profit: Profit;

@@ -12,7 +12,7 @@ class UpdateSpendsService {
     private categoryRepository: ICategoriesRepository
   ) {}
 
-  async execute({id, name, description, cost, id_category}): Promise<void> {
+  async execute({id, name, description, cost, id_category, id_profit}): Promise<void> {
     if(! await this.spendsRepository.findById(id)) {
       throw new AppError("Spends does not exists!");
     }
@@ -21,7 +21,7 @@ class UpdateSpendsService {
       throw new AppError("Category does not exists!");
     }
 
-    this.spendsRepository.updateSpend({id, name, description, cost, id_category});
+    this.spendsRepository.updateSpend({id, name, description, cost, id_category, id_profit});
   }
 }
 
