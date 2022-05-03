@@ -5,32 +5,32 @@ import { AppError } from "../errors/AppError";
 import { ICreateSpendsDTO, IDeleteSpendDTO, ISpendsRepository } from "./interfaces/ISpendsRepository";
 
 class SpendsRepository implements ISpendsRepository {
-  private respository :  Repository<Spend>;
+  private repository :  Repository<Spend>;
 
   constructor() {
-    this.respository = getRepository(Spend);
+    this.repository = getRepository(Spend);
   }
 
   async findById(id: string): Promise<Spend> {
-    const spend = await this.respository.findOne({ id });
+    const spend = await this.repository.findOne({ id });
     return spend;
   }
 
   async listSpends(): Promise<Spend[]> {
-    const spends = await this.respository.find();
+    const spends = await this.repository.find();
     return spends;
   }
 
   async createSpend({ name, description, cost, id_category }: ICreateSpendsDTO): Promise<void> {
     try{
-      const spend = this.respository.create({
+      const spend = this.repository.create({
         name,
         description,
         cost,
         id_category,
       })
 
-      await this.respository.save(spend);
+      await this.repository.save(spend);
 
     } catch {
       throw new AppError("this category does not created.");
@@ -39,13 +39,14 @@ class SpendsRepository implements ISpendsRepository {
 
   async updateSpend({ id, name, description, cost, id_category }: ICreateSpendsDTO): Promise<void> {
     try{
-      await this.respository.update({
+      await this.repository.update({
         id,
       }, {
         name: name,
         description: description,
         cost: cost,
         id_category: id_category,
+        updated_at: new Date(),
       });
 
     } catch {
@@ -54,7 +55,7 @@ class SpendsRepository implements ISpendsRepository {
   }
 
   async deleteSpend({ id }: IDeleteSpendDTO): Promise<void> {
-    await this.respository.delete(id);
+    await this.repository.delete(id);
   }
 
 

@@ -1,5 +1,6 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity,  PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity,  OneToMany,  PrimaryColumn } from "typeorm";
+import { Spend } from "./spend";
 
 // - O usuário deve conseguir ter uma visão geral da sua saúde financeira a qualquer
 //  momento. para isso, gere um extrato financeiro mostrando todos os gastos 
@@ -13,13 +14,16 @@ class Profit {
   @Column()
   title: string;
   @Column()
-  gain: number;
+  gain: Number;
   @Column()
-  balance: number;
+  balance: Number;
   @CreateDateColumn()
   created_at: Date;
   @CreateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => Spend, spend => spend.profit)
+  spends: Spend[];
 
   constructor() {
     if (!this.id) {

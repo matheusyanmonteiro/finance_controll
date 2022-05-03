@@ -6,9 +6,11 @@ import {
   PrimaryColumn,
   OneToOne,
   JoinColumn,
+  ManyToOne,
 } from "typeorm";
 
 import { Category } from "./category";
+import { Profit } from "./profit";
 
 @Entity("spends")
 class Spend {
@@ -31,6 +33,10 @@ class Spend {
   @OneToOne(() => Category, category => category.spendInfo, {onDelete: 'CASCADE'})
   @JoinColumn({name : "id_category"})
   category: Category;
+
+  @ManyToOne(() => Profit, profit => profit.spends, {onDelete: 'SET NULL'})
+  @JoinColumn({name : "id_profit"})
+  profit: Profit;
 
   constructor() {
     if (!this.id) {
