@@ -54,6 +54,7 @@ http://localhost:3333/api-docs/#/
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [TypeScript](https://github.com/Microsoft/TypeScript)
 - [Express](https://github.com/expressjs/express)
+- [Typeorm](https://typeorm.io/)
 
 ## Ferramentas
 
