@@ -1,5 +1,6 @@
 import { getRepository, Repository } from "typeorm";
 import { User } from "../entities/user";
+import { AppError } from "../errors/AppError";
 import { ICreateUserDTO, IDeleteUserDTO, IUsersRepository } from "./interfaces/IUsersRepository";
 
 class UsersRepository implements IUsersRepository {
@@ -9,17 +10,34 @@ class UsersRepository implements IUsersRepository {
     this.repository = getRepository(User);
   }
 
+  async listAllUser(): Promise<User[]> {
+    const users = await this.repository.find();
+    return users;
+  }
+
   async findByUsername(username: string): Promise<User> {
     const user = await this.repository.findOne({ username });
     return user;
   }
-  
+
   async update({ id, name, password, email }: ICreateUserDTO): Promise<void> {
-    throw new Error("Method not implemented.");
+      try{
+      await this.repository.update({
+        id,
+      }, {
+        name: name,
+        password: password,
+        email: email,
+        updated_at: new Date(),
+      });
+
+    } catch {
+      throw new AppError("This User does not update"); 
+    }  
   }
 
   async delete({ id }: IDeleteUserDTO): Promise<void> {
-    throw new Error("Method not implemented.");
+    await this.repository.delete(id);
   }
 
   async create({

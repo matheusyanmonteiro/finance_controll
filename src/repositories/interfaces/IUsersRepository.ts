@@ -18,6 +18,7 @@ interface IUsersRepository {
   findById(id: string): Promise<User>;
   update( {id, name, password, email }: ICreateUserDTO ): Promise<void>;
   delete( { id }: IDeleteUserDTO): Promise<void>;
+  listAllUser(): Promise<User[]>;
 
 }
 

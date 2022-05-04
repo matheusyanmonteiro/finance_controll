@@ -8,9 +8,9 @@ const userController = new UserController();
 
 
 usersRoutes.post("/", userController.handleCreate);
-//usersRoutes.get("/", userController.handleList);
-//usersRoutes.put("/:id", userController.handleUpdate);
-//usersRoutes.delete("/:id", userController.handleDelete);
+usersRoutes.put("/:id", userController.handleUpdate);
+usersRoutes.delete("/:id", userController.handleDelete);
+usersRoutes.get("/", userController.handleList);
 
 
 export { usersRoutes }
