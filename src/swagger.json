@@ -402,6 +402,167 @@
             }
           }
         }
+      },
+
+      "/users":{
+        "post": {
+          "tags": ["User"],
+          "summary":"Create a user",
+          "description": "Create a new user",
+          "requestBody": {
+            "content":{
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "name": "string string",
+                    "email": "string@email.com",
+                    "password": "string",
+                    "username": "string"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "created"
+            },
+            "500": {
+              "description": "user already exists"
+            }
+          }
+        },
+        "get": {
+          "tags": ["User"],
+          "summary": "List all User",
+          "description": "List all User",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "typ": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "password": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "isAdmin": {
+                          "type": "Number"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "update_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/users/{id}": {
+        "put": {
+          "tags": ["User"],
+          "summary":"Create a User",
+          "description": "Create a new User",
+          "parameters": [
+            {
+              "name": "id", 
+              "in": "path", 
+              "required": true, 
+              "description": "Id of todo to be updated"
+            }
+          ],
+          "requestBody": {
+              "content":{
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "username": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "name": "string string",
+                      "email": "string@email.com",
+                      "password": "string",
+                      "username": "string"
+                    }
+                  }
+                }
+              }
+          },
+          "responses": {
+            "201": {
+              "description": "Updated"
+            },
+            "500": {
+              "description": " already exists"
+            }
+          }
+        },
+        "delete": {
+          "tags": ["User"],
+          "summary":"delete a User",
+          "description": "delete a new User",
+          "parameters": [
+            {
+              "name": "id", 
+              "in": "path", 
+              "required": true, 
+              "description": "Id of todo to be updated"
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "created"
+            },
+            "500": {
+              "description": "Error"
+            }
+          }
+        }
       }
 
 
