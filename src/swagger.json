@@ -1,0 +1,409 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Finance Control",
+    "description":"This is an API REST of Finances ",
+    "version": "1.0.0",
+    "contract": {
+      "email":"generics@email.com"
+    }
+   },
+    "paths": {
+      "/categories": {
+        "post": {
+          "tags": ["Category"],
+          "summary":"Create a category",
+          "description": "Create a new category",
+          "requestBody": {
+            "content":{
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "name": "category name sample",
+                    "description": "Category description sample"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "created"
+            },
+            "500": {
+              "description": "Category already exists"
+            }
+          }
+        },
+        "get": {
+          "tags": ["Category"],
+          "summary": "List all categories",
+          "description": "List all categories",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "typ": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accept"
+          }
+        }
+      },
+      "/spends":{
+        "post": {
+          "tags": ["Spend"],
+          "summary":"Create a spend",
+          "description": "Create a new spend",
+          "requestBody": {
+            "content":{
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "cost": {
+                      "type": "number"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "update_at": {
+                      "type": "string"
+                    },
+                    "id_category": {
+                      "type": "string"
+                    },
+                    "id_profit": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "name": "string",
+	                  "description": "string string",
+	                  "cost": 0,
+	                  "id_category": "0dfc61ef-615b-4f0e-948a-2ccd839d979b",
+	                  "id_profit": null
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "created"
+            },
+            "500": {
+              "description": "Category already exists"
+            }
+          }
+        },
+        "get": {
+          "tags": ["Spend"],
+          "summary": "List all Spend",
+          "description": "List all Spend",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "typ": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "cost": {
+                          "type": "number"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "update_at": {
+                          "type": "string"
+                        },
+                        "id_category": {
+                          "type": "string"
+                        },
+                        "id_profit": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/spends/{id}": {
+        "put": {
+          "tags": ["Spend"],
+          "summary":"Create a spend",
+          "description": "Create a new spend",
+          "parameters": [
+            {
+              "name": "id", 
+              "in": "path", 
+              "required": true, 
+              "description": "Id of todo to be updated"
+            }
+          ],
+          "requestBody": {
+              "content":{
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "cost": {
+                        "type": "number"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "update_at": {
+                        "type": "string"
+                      },
+                      "id_category": {
+                        "type": "string"
+                      },
+                      "id_profit": {
+                        "type": "string"
+                      }
+                    },
+                  "example": {
+                      "name": "string",
+                      "description": "string string",
+                      "cost": 0,
+                      "id_category": "0dfc61ef-615b-4f0e-948a-2ccd839d979b",
+                      "id_profit": null
+                    }
+                  },
+                  "example": {
+                    "name": "string",
+	                  "description": "string string",
+	                  "cost": 0,
+	                  "id_category": "0dfc61ef-615b-4f0e-948a-2ccd839d979b",
+	                  "id_profit": null
+                  }
+                }
+              }
+          },
+          "responses": {
+            "201": {
+              "description": "created"
+            },
+            "500": {
+              "description": "Category already exists"
+            }
+          }
+        },
+        "delete": {
+          "tags": ["Spend"],
+          "summary":"delete a spend",
+          "description": "delete a new spend",
+          "parameters": [
+            {
+              "name": "id", 
+              "in": "path", 
+              "required": true, 
+              "description": "Id of todo to be updated"
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "created"
+            },
+            "500": {
+              "description": "Category already exists"
+            }
+          }
+        }
+      },
+      "/profits":{
+        "post": {
+          "tags": ["Profit"],
+          "summary":"Create a profit",
+          "description": "Create a new profit",
+          "requestBody": {
+            "content":{
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "gain": {
+                      "type": "Number"
+                    }
+                  },
+                  "example": {
+                    "title": "string",
+	                  "gain": 213
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "created"
+            },
+            "500": {
+              "description": "profit already exists"
+            }
+          }
+        },
+        "get": {
+          "tags": ["Profit"],
+          "summary": "List all Profit",
+          "description": "List all Profit",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "typ": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string"
+                        },
+                        "gain": {
+                          "type": "number"
+                        },
+                        "balance": {
+                          "type": "number"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "update_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/profits/{id}": {
+        "put": {
+          "tags": ["Profit"],
+          "summary":"Create a profit",
+          "description": "Create a new profit",
+          "parameters": [
+            {
+              "name": "id", 
+              "in": "path", 
+              "required": true, 
+              "description": "Id of todo to be updated"
+            }
+          ],
+          "requestBody": {
+              "content":{
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "gain": {
+                        "type": "Number"
+                      }
+                    },
+                    "example": {
+                      "title": "string",
+                      "gain": 213
+                    }
+                  }
+                }
+              }
+          },
+          "responses": {
+            "201": {
+              "description": "Updated"
+            },
+            "500": {
+              "description": " already exists"
+            }
+          }
+        },
+        "delete": {
+          "tags": ["Profit"],
+          "summary":"delete a Profit",
+          "description": "delete a new Profit",
+          "parameters": [
+            {
+              "name": "id", 
+              "in": "path", 
+              "required": true, 
+              "description": "Id of todo to be updated"
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "created"
+            },
+            "500": {
+              "description": "Error"
+            }
+          }
+        }
+      }
+
+
+    }
+}
