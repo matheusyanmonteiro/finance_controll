@@ -1,3 +1,4 @@
+import { All } from "aws-sdk/clients/wafv2";
 import { getRepository, Repository } from "typeorm";
 import { Spend } from "../entities/spend";
 import { AppError } from "../errors/AppError";
@@ -10,6 +11,17 @@ class SpendsRepository implements ISpendsRepository {
   constructor() {
     this.repository = getRepository(Spend);
   }
+  async getAllSpends(): Promise<number> {
+    const allSpends = await this.repository.find({select: ["cost"]})
+    var valor = 0;
+
+    allSpends.forEach((index) => {
+       valor += Number(index.cost);
+    })
+
+    return valor;
+  }
+
 
   async findById(id: string): Promise<Spend> {
     const spend = await this.repository.findOne({ id });

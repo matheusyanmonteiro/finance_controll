@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { CreateProfitsService } from "../services/ProfitsServices/CreateProfitsService";
 import { DeleteProfitsService } from "../services/ProfitsServices/DeleteProfitsService";
+import { GetAllProfitsService } from "../services/ProfitsServices/GetAllProfitsService";
 import { ListProfitsService } from "../services/ProfitsServices/ListProfitsService";
 import { UpdateProfitsService } from "../services/ProfitsServices/UpdateProfitsService";
 
@@ -28,6 +29,12 @@ class ProfitController {
 
   async handleList(request : Request, response : Response) : Promise<Response>{
     const listProfits = container.resolve(ListProfitsService)
+    const all = await listProfits.execute();
+    return response.json(all);
+  }
+
+  async handleAllProfits(request : Request, response : Response) : Promise<Response>{
+    const listProfits = container.resolve(GetAllProfitsService)
     const all = await listProfits.execute();
     return response.json(all);
   }

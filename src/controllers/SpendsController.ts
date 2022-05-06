@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { CreateSpendsService } from "../services/SpendsServices/CreateSpendsService";
 import { DeleteSpendsService } from "../services/SpendsServices/DeleteSpendsService";
+import { GetAllSpendsService } from "../services/SpendsServices/GetAllSpendsService";
 import { ListSpendsService } from "../services/SpendsServices/ListSpendsService";
 import { UpdateSpendsService } from "../services/SpendsServices/UpdateSpendsService";
 
@@ -27,6 +28,12 @@ class SpendsController {
 
   async handleList(request : Request, response : Response) : Promise<Response>{
     const listSpendsService = container.resolve(ListSpendsService)
+    const all = await listSpendsService.execute();
+    return response.json(all);
+  }
+
+  async handleAllSpend(request : Request, response : Response) : Promise<Response>{
+    const listSpendsService = container.resolve(GetAllSpendsService)
     const all = await listSpendsService.execute();
     return response.json(all);
   }

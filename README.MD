@@ -9,7 +9,7 @@
 - [x] O usuário deve poder criar uma conta que irá conter seus ganhos e gastos.
 - [x] Haverão 5 áreas de gastos: Entretenimento, Alimentação, Educação, Saúde e Transporte.
 - [x] Deve ser possível adicionar, remover, atualizar e listar os gastos e ganhos.
-- [ ] O usuário deve conseguir ter uma visão geral da sua saúde financeira a qualquer momento. para isso, gere um extrato financeiro mostrando todos os gastos (seguindo as 5 áreas supracitadas), seus ganhos e o saldo de sua carteira.
+- [x] O usuário deve conseguir ter uma visão geral da sua saúde financeira a qualquer momento. para isso, gere um extrato financeiro mostrando todos os gastos (seguindo as 5 áreas supracitadas), seus ganhos e o saldo de sua carteira.
 
 ## Como rodar a aplicação? 
 &emsp;&emsp;Siga Esses Passos com atenção e tudo rodará como planejado 💀  (•◡•) /

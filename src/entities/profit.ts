@@ -16,8 +16,6 @@ class Profit {
   title: string;
   @Column()
   gain: Number;
-  @Column()
-  balance: Number;
   @CreateDateColumn()
   created_at: Date;
   @CreateDateColumn()

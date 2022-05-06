@@ -3,6 +3,7 @@ import { container } from "tsyringe";
 import { AuthenticateUserService } from "../services/UsersServices/AuthenticateUserService";
 import { CreateUserUseCase } from "../services/UsersServices/CreateUserServices";
 import { DeleteUserService } from "../services/UsersServices/DeleteUserService";
+import { ExpensesMinusEarningsService } from "../services/UsersServices/ExpensesMinusEarningsService";
 import { ListUsersService } from "../services/UsersServices/ListUsersService";
 import { UpdateUserService } from "../services/UsersServices/UpdateUserService";
 
@@ -53,6 +54,12 @@ class UserController {
   async handleList(request : Request, response : Response) : Promise<Response>{
     const listUsersService = container.resolve(ListUsersService)
     const all = await listUsersService.execute();
+    return response.json(all);
+  }
+
+  async handleExpensesMinusEarnings(request: Request, response: Response): Promise<Response> {
+    const expensesMinusEarningsService = container.resolve(ExpensesMinusEarningsService)
+    const all = await expensesMinusEarningsService.execute();
     return response.json(all);
   }
   

@@ -10,6 +10,17 @@ class ProfitRepository implements IProfitRepository {
     this.repository = getRepository(Profit);
   }
 
+  async getAllProfits(): Promise<number> {
+    const allSpends = await this.repository.find({select: ["gain"]})
+    var valor = 0;
+
+    allSpends.forEach((index) => {
+       valor += Number(index.gain);
+    })
+
+    return valor;
+  }
+
   async findById(id: string): Promise<Profit> {
     const profit = await this.repository.findOne({ id });
     return profit;

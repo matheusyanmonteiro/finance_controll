@@ -17,6 +17,7 @@ interface IProfitRepository {
     updateSpend( { id, title, gain }: ICreateProfitDTO ): Promise<void>;
     deleteSpend( { id }: IDeleteProfitDTO): Promise<void>;
     findById( id: string): Promise<Profit>;
+    getAllProfits(): Promise<number>;
 }
 
 export { ICreateProfitDTO, IProfitRepository, IDeleteProfitDTO }

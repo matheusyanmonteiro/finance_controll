@@ -19,6 +19,7 @@ interface ISpendsRepository {
     updateSpend( {id, name, description, cost, id_user }: ICreateSpendsDTO ): Promise<void>;
     deleteSpend( { id }: IDeleteSpendDTO): Promise<void>;
     findById( id: string): Promise<Spend>;
+    getAllSpends(): Promise<number>;
 }
 
 export { ICreateSpendsDTO, ISpendsRepository, IDeleteSpendDTO }
