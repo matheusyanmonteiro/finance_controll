@@ -11,6 +11,7 @@ import {
 
 import { Category } from "./category";
 import { Profit } from "./profit";
+import { User } from "./user";
 
 @Entity("spends")
 class Spend {
@@ -29,17 +30,15 @@ class Spend {
 
   @Column()
   id_category: string;
-
   @OneToOne(() => Category, category => category.spendInfo, {onDelete: 'CASCADE'})
   @JoinColumn({name : "id_category"})
   category: Category;
 
   @Column()
-  id_profit: string;
-
-  @ManyToOne(() => Profit, profit => profit.spends, {onDelete: 'SET NULL'})
-  @JoinColumn({name : "id_profit"})
-  profit: Profit;
+  id_user: string;
+  @ManyToOne(() => User, userInfo => userInfo.spends, {onDelete: 'CASCADE'})
+  @JoinColumn({name: "id_user"})
+  user: User
 
   constructor() {
     if (!this.id) {

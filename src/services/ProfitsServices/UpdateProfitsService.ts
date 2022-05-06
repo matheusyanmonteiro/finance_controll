@@ -9,12 +9,12 @@ class UpdateProfitsService {
     private profitRepository: IProfitRepository,
   ) {}
 
-  async execute({id, title, gain}): Promise<void> {
+  async execute({id, title, gain, id_user}): Promise<void> {
     if(! await this.profitRepository.findById(id)) {
       throw new AppError("Profit does not exists!");
     }
 
-    this.profitRepository.updateSpend({id, title, gain});
+    this.profitRepository.updateSpend({id, title, gain, id_user});
   }
 }
 

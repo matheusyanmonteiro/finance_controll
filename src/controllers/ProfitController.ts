@@ -9,19 +9,19 @@ import { UpdateProfitsService } from "../services/ProfitsServices/UpdateProfitsS
 
 class ProfitController {
   async handleCreate(request: Request, response: Response): Promise<Response>{
-    const { title, gain }  = request.body;
+    const { title, gain, id_user }  = request.body;
 
     const createSpendsService = container.resolve(CreateProfitsService);
-    await createSpendsService.execute({ title, gain });
+    await createSpendsService.execute({ title, gain, id_user });
 
     return response.status(201).send();
   }
   async handleUpdate(request: Request, response: Response): Promise<Response> {
      const { id } = request.params;
-     const { title, gain  }  = request.body;
+     const { title, gain, id_user }  = request.body;
 
      const updateProfitsService = container.resolve(UpdateProfitsService);
-     await updateProfitsService.execute({id, title, gain  });
+     await updateProfitsService.execute({id, title, gain, id_user });
 
      return response.status(202).send();
   }

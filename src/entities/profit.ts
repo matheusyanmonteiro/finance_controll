@@ -1,6 +1,7 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity,  OneToMany,  PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity,  JoinColumn,  ManyToOne,  OneToMany,  PrimaryColumn } from "typeorm";
 import { Spend } from "./spend";
+import { User } from "./user";
 
 // - O usuário deve conseguir ter uma visão geral da sua saúde financeira a qualquer
 //  momento. para isso, gere um extrato financeiro mostrando todos os gastos 
@@ -22,8 +23,13 @@ class Profit {
   @CreateDateColumn()
   updated_at: Date;
 
-  @OneToMany(() => Spend, spendinfo => spendinfo.profit)
-  spends: Spend[];
+  @Column()
+  id_user: string;
+  @ManyToOne(() => User, userInfo => userInfo.profits, {onDelete: 'CASCADE'})
+  @JoinColumn({name: "id_user"})
+  user: User
+
+ 
 
   constructor() {
     if (!this.id) {

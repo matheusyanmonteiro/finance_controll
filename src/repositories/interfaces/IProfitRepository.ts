@@ -4,6 +4,7 @@ interface ICreateProfitDTO {
   id?: string;
   title: string;
   gain: Number;
+  id_user?: string
 }
 
 interface IDeleteProfitDTO {

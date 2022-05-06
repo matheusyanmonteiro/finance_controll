@@ -20,11 +20,12 @@ class ProfitRepository implements IProfitRepository {
     return profits;
   }
 
-  async createSpend({ title, gain }: ICreateProfitDTO): Promise<void> {
+  async createSpend({ title, gain, id_user }: ICreateProfitDTO): Promise<void> {
     try{
       const profit = this.repository.create({
         title,
         gain,
+        id_user
       })
 
       await this.repository.save(profit);
@@ -34,13 +35,14 @@ class ProfitRepository implements IProfitRepository {
     }
   }
 
-  async updateSpend({ id, title, gain }: ICreateProfitDTO): Promise<void> {
+  async updateSpend({ id, title, gain, id_user }: ICreateProfitDTO): Promise<void> {
     try{
       await this.repository.update({
         id,
       }, {
         title,
         gain,
+        id_user,
         updated_at: new Date(),
       });
 

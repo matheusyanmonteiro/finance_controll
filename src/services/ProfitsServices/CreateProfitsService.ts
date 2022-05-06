@@ -4,6 +4,7 @@ import { IProfitRepository } from "../../repositories/interfaces/IProfitReposito
 interface IRequest {
   title: string;
   gain: Number;
+  id_user: string;
 }
 
 @injectable()
@@ -13,8 +14,8 @@ class CreateProfitsService {
     private profitRepository: IProfitRepository,
   ) {}
 
-  async execute({ title, gain }: IRequest): Promise<void> {
-    this.profitRepository.createSpend({title, gain });
+  async execute({ title, gain, id_user }: IRequest): Promise<void> {
+    this.profitRepository.createSpend({title, gain, id_user });
   }
 }
 

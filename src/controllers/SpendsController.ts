@@ -8,19 +8,19 @@ import { UpdateSpendsService } from "../services/SpendsServices/UpdateSpendsServ
 
 class SpendsController {
   async handleCreate(request: Request, response: Response): Promise<Response>{
-    const { name, description, cost, id_category, id_profit }  = request.body;
+    const { name, description, cost, id_category, id_user }  = request.body;
 
     const createSpendsService = container.resolve(CreateSpendsService);
-    await createSpendsService.execute({ name, description, cost, id_category, id_profit });
+    await createSpendsService.execute({ name, description, cost, id_category, id_user });
 
     return response.status(201).send();
   }
   async handleUpdate(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { name, description, cost, id_category, id_profit }  = request.body;
+    const { name, description, cost, id_category, id_user }  = request.body;
 
     const updateSpendsService = container.resolve(UpdateSpendsService);
-    await updateSpendsService.execute({id, name, description, cost, id_category, id_profit });
+    await updateSpendsService.execute({id, name, description, cost, id_category, id_user });
 
     return response.status(202).send();
   }
