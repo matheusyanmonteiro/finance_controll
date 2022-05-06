@@ -26,12 +26,12 @@ class ProfitRepository implements IProfitRepository {
     return profit;
   }
 
-  async listSpends(): Promise<Profit[]> {
+  async listProfits(): Promise<Profit[]> {
     const profits = await this.repository.find();
     return profits;
   }
 
-  async createSpend({ title, gain, id_user }: ICreateProfitDTO): Promise<void> {
+  async createProfit({ title, gain, id_user }: ICreateProfitDTO): Promise<void> {
     try{
       const profit = this.repository.create({
         title,
@@ -46,7 +46,7 @@ class ProfitRepository implements IProfitRepository {
     }
   }
 
-  async updateSpend({ id, title, gain, id_user }: ICreateProfitDTO): Promise<void> {
+  async updateProfit({ id, title, gain, id_user }: ICreateProfitDTO): Promise<void> {
     try{
       await this.repository.update({
         id,
@@ -62,7 +62,7 @@ class ProfitRepository implements IProfitRepository {
     }  
   }
 
-  async deleteSpend({ id }: IDeleteProfitDTO): Promise<void> {
+  async deleteProfit({ id }: IDeleteProfitDTO): Promise<void> {
     await this.repository.delete(id);
   }
 

@@ -12,10 +12,10 @@ interface IDeleteProfitDTO {
 }
 
 interface IProfitRepository {
-    listSpends(): Promise<Profit[]>;
-    createSpend( { title, gain }: ICreateProfitDTO ): Promise<void>;
-    updateSpend( { id, title, gain }: ICreateProfitDTO ): Promise<void>;
-    deleteSpend( { id }: IDeleteProfitDTO): Promise<void>;
+    listProfits(): Promise<Profit[]>;
+    createProfit( { title, gain }: ICreateProfitDTO ): Promise<void>;
+    updateProfit( { id, title, gain }: ICreateProfitDTO ): Promise<void>;
+    deleteProfit( { id }: IDeleteProfitDTO): Promise<void>;
     findById( id: string): Promise<Profit>;
     getAllProfits(): Promise<number>;
 }

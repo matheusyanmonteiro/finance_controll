@@ -10,7 +10,7 @@ class ListProfitsService {
   ) {}
 
   async execute(): Promise<Profit[]> {
-    const profit = await this.profitRepository.listSpends();
+    const profit = await this.profitRepository.listProfits();
     return profit;
   }
 }

@@ -14,7 +14,7 @@ class UpdateProfitsService {
       throw new AppError("Profit does not exists!");
     }
 
-    this.profitRepository.updateSpend({id, title, gain, id_user});
+    this.profitRepository.updateProfit({id, title, gain, id_user});
   }
 }
 

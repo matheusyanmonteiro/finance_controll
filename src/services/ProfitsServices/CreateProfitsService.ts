@@ -15,7 +15,7 @@ class CreateProfitsService {
   ) {}
 
   async execute({ title, gain, id_user }: IRequest): Promise<void> {
-    this.profitRepository.createSpend({title, gain, id_user });
+    this.profitRepository.createProfit({title, gain, id_user });
   }
 }
 

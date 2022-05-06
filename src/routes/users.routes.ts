@@ -11,6 +11,7 @@ usersRoutes.post("/", userController.handleCreate);
 usersRoutes.put("/:id", userController.handleUpdate);
 usersRoutes.delete("/:id", userController.handleDelete);
 usersRoutes.get("/", userController.handleList);
+usersRoutes.get("/report", userController.handleReport);
 usersRoutes.get("/all", userController.handleExpensesMinusEarnings);
 
 

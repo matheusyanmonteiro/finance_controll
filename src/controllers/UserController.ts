@@ -5,6 +5,7 @@ import { CreateUserUseCase } from "../services/UsersServices/CreateUserServices"
 import { DeleteUserService } from "../services/UsersServices/DeleteUserService";
 import { ExpensesMinusEarningsService } from "../services/UsersServices/ExpensesMinusEarningsService";
 import { ListUsersService } from "../services/UsersServices/ListUsersService";
+import { ReportUserService } from "../services/UsersServices/ReportUserService";
 import { UpdateUserService } from "../services/UsersServices/UpdateUserService";
 
 class UserController {
@@ -59,6 +60,12 @@ class UserController {
 
   async handleExpensesMinusEarnings(request: Request, response: Response): Promise<Response> {
     const expensesMinusEarningsService = container.resolve(ExpensesMinusEarningsService)
+    const all = await expensesMinusEarningsService.execute();
+    return response.json(all);
+  }
+
+  async handleReport(request: Request, response: Response): Promise<Response> {
+    const expensesMinusEarningsService = container.resolve(ReportUserService)
     const all = await expensesMinusEarningsService.execute();
     return response.json(all);
   }
